@@ -17,15 +17,17 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+/**
+ * Home Activity
+ */
 public class HomeActivity extends Activity implements HomeFragmentContent.OnFragmentInteractionListener,searchFragment.OnFragmentInteractionListener
 {
 
-    EditText editText;
-    TextView textView;
-    HomeFragmentContent homeFragmentContent=new HomeFragmentContent();
-    FrameLayout frameLayout;
-    searchFragment searchFragment=new searchFragment();
+    private EditText editText;
+    private TextView textView;
+    private HomeFragmentContent homeFragmentContent=new HomeFragmentContent();
+    private FrameLayout frameLayout;
+    private searchFragment searchFragment=new searchFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,36 +43,13 @@ public class HomeActivity extends Activity implements HomeFragmentContent.OnFrag
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_home, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
+    /**
+     * Method callled from fragment
+     */
     @Override
     public void onFragmentInteraction() {
-
         final int mShortAnimationDuration=1000;
-
-
-
-            textView.animate()
+        textView.animate()
                     .alpha(0f)
                     .setDuration(mShortAnimationDuration)
                     .setListener(new AnimatorListenerAdapter() {
@@ -84,9 +63,12 @@ public class HomeActivity extends Activity implements HomeFragmentContent.OnFrag
                                     .setDuration(mShortAnimationDuration);
                         }
                     });
-
     }
 
+    /**
+     * Start a search fragment
+     * @param view
+     */
     public void startSearchFragment(View view){
         FragmentTransaction fragmentTransaction=getFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.animator.slide_up, R.animator.slide_down);

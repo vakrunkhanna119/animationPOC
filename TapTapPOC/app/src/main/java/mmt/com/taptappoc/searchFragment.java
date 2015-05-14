@@ -13,24 +13,19 @@ import android.view.animation.AnimationSet;
 
 
 /**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link searchFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
+ *
  */
 public class searchFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
     public searchFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
@@ -53,40 +48,44 @@ public class searchFragment extends Fragment {
     }
 
 
-
+    /**
+     * Method added for capturing fragment transitions events
+     * @param transit
+     * @param enter
+     * @param nextAnim
+     * @return
+     */
     @Override
-        public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
+    public Animator onCreateAnimator(int transit, boolean enter, int nextAnim) {
 
-           // final int animatorId = (enter) ? R.animator.slide_down : R.animator.slide_up;
-       // Animation anim = AnimationUtils.loadAnimation(getActivity(), nextAnim);
-            final Animator anim = AnimatorInflater.loadAnimator(getActivity(), nextAnim);
-            anim.addListener(new Animator.AnimatorListener() {
-                @Override
-                public void onAnimationStart(Animator animation) {
+        final Animator anim = AnimatorInflater.loadAnimator(getActivity(), nextAnim);
+        anim.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
-                }
+            }
 
-                @Override
-                public void onAnimationEnd(Animator animation) {
+            @Override
+            public void onAnimationEnd(Animator animation) {
 
-                    mListener.onFragmentInteraction();
+                mListener.onFragmentInteraction();
 
-                }
+            }
 
-                @Override
-                public void onAnimationCancel(Animator animation) {
+            @Override
+            public void onAnimationCancel(Animator animation) {
 
-                }
+            }
 
-                @Override
-                public void onAnimationRepeat(Animator animation) {
-                }
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+            }
 
 
-            });
+        });
         return anim;
 
-        }
+    }
 
     @Override
     public void onDetach() {
